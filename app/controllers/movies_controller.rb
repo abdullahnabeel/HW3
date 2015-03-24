@@ -6,11 +6,20 @@ class MoviesController < ApplicationController
     @slite = "no"
     @drel = "no"
     @all_ratings = ['G','PG','PG-13','R','NC-17']
-    if sby == "title"
-      @movies = Movie.find(:all,:order => sby)
+    disrat = params[:ratings]
+    if sby == "title" && disrat == nil
+      @movies = Movie.find(:all,:order => "title")
       @slite = "hilite"
-    elsif sby == "release_date"
-      @movies = Movie.find(:all,:order => sby)
+    elsif sby == "release_date" && disrat == nil
+      @movies = Movie.find(:all,:order => "release_date")
+      @drel = "hilite"
+    elsif sby == nil && disrat != nil
+      @movies = Movie.find(:all, :conditions => {:rating => disrat.keys})
+    elsif sby == "title" && disrat != nil
+      @movies = Movie.find(:all, :conditions => {:rating => disrat.keys},:order => "title")
+      @slite = "hilite"
+    elsif sby == "release_date" && disrat != nil
+      @movies = Movie.find(:all, :conditions => {:rating => disrat.keys},:order => "release_date")
       @drel = "hilite"
     else 
       @movies = Movie.all

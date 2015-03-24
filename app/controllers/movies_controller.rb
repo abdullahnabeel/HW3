@@ -4,6 +4,7 @@ class MoviesController < ApplicationController
   def index
     sby = params[:sort_by]
     @slite = nil
+    @all_ratings = [ 'G','PG','PG-13','R','NC-17']
     if sby == "title"
       @movies = Movie.find(:all,:order => sby)
       @slite = "hilite"

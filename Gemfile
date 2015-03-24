@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.15'
-ruby '1.9.3'
+ruby '2.1.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # for Heroku deployment - as described in Ap A of ELLS book
 group :development, :test do
-  gem 'sqlite3'
-  gem 'debugger'
+  gem "sqlite3", "~> 1.3.10"
+  gem 'byebug'
 end
 
 group :production do

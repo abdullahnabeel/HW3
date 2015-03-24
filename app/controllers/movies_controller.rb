@@ -2,7 +2,13 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies = Movie.all
+    sby = params[:sort_by]
+    
+    if sby == "title"
+      @movies = Movie.find(:all,:order => sby)
+    else
+      @movies = Movie.all
+    end
   end
 
   def show

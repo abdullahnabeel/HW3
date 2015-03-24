@@ -3,12 +3,16 @@ class MoviesController < ApplicationController
 
   def index
     sby = params[:sort_by]
-    @slite = nil
-    @all_ratings = [ 'G','PG','PG-13','R','NC-17']
+    @slite = "no"
+    @drel = "no"
+    @all_ratings = ['G','PG','PG-13','R','NC-17']
     if sby == "title"
       @movies = Movie.find(:all,:order => sby)
       @slite = "hilite"
-    else
+    elsif sby == "release_date"
+      @movies = Movie.find(:all,:order => sby)
+      @drel = "hilite"
+    else 
       @movies = Movie.all
     end
   end

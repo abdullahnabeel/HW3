@@ -6,7 +6,7 @@
     %tr
       %th{:class=>@slite}= link_to "Movie Title", movies_path(:sort_by => "title"), @title_header
       %th Rating
-      %th Release Date
+      %th{:class=>@drel}= link_to "Release Date", movies_path(:sort_by => "release_date"), @release_date_header
       %th More Info
   %tbody
     - @movies.each do |movie|
